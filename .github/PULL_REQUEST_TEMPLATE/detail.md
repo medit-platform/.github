@@ -1,12 +1,8 @@
-## Context :bulb:
-
- -
-
 ## Problems :mag:
 
  -
 
-## Cause :detective:
+## Causes  :bulb:
 
  -
 
