@@ -1,0 +1,4 @@
+blank_issues_enabled: false
+issue_templates:
+  - name: "Medit Auto Issue Template"
+    file: medit-jira-auto.yml
