@@ -1,0 +1,57 @@
+name: "Medit JIRA Auto-Issue"
+description: "Create a Medit-standard JIRA Issue and Git branch automatically from this GitHub Issue."
+labels: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📝 Medit JIRA Auto-Issue Form
+        Fill out the fields below to create a standardized JIRA issue.
+
+        Once this issue is submitted, GitHub Actions will automatically:
+        - Create a corresponding JIRA Issue  
+        - Update this GitHub Issue title with the JIRA Issue Key  
+        - Create a Git branch using the selected prefix + JIRA key  
+
+        > **Title Notice:**  
+        Use the GitHub “Add a title” field above.  
+        This will be used as the JIRA issue summary.
+
+  - type: dropdown
+    id: jira_type
+    attributes:
+      label: "JIRA Issue Type"
+      options:
+        - Task
+        - Bug
+        - Epic
+        - Story
+    validations:
+      required: true
+
+  - type: dropdown
+    id: branch_type
+    attributes:
+      label: "Branch Prefix"
+      options:
+        - feat
+        - fix
+        - refactor
+        - chore
+    validations:
+      required: true
+
+  - type: input
+    id: epic_key
+    attributes:
+      label: "Parent Epic (Optional)"
+      placeholder: "FP-123"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Issue Description"
+      placeholder: "Describe the problem, expected result, environment, screenshots, etc."
+    validations:
+      required: true
