@@ -12,7 +12,7 @@
 
 ## Testing :test_tube:
 
- - 
+ - [x] 
 
 ## Screenshots :camera:
 
