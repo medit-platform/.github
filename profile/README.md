@@ -19,7 +19,6 @@
 | - | - |
 | [auravue](https://github.com/medit-platform/auravue) | 웹 뷰어 앱 |
 | [checkpoint](https://github.com/medit-platform/checkpoint) | 체크포인트 앱 |
-| [cx-suite](https://github.com/medit-platform/cx-suite) | CX Suite 앱 |
 
 ## Resources
 
