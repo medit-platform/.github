@@ -1,0 +1,44 @@
+name: Sync Profile README
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - profile/README.md
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ secrets.CELEB_GITHUB_ACTIONS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.CELEB_GITHUB_ACTIONS_APP_PRIVATE_KEY }}
+          owner: medit-platform
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync to .github-private
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          CONTENT=$(base64 < profile/README.md)
+          SHA=$(gh api repos/medit-platform/.github-private/contents/profile/README.md --jq '.sha' 2>/dev/null || echo "")
+
+          if [ -n "$SHA" ]; then
+            gh api repos/medit-platform/.github-private/contents/profile/README.md \
+              -X PUT \
+              --field message="chore: sync profile README" \
+              --field content="$CONTENT" \
+              --field sha="$SHA"
+          else
+            gh api repos/medit-platform/.github-private/contents/profile/README.md \
+              -X PUT \
+              --field message="chore: sync profile README" \
+              --field content="$CONTENT"
+          fi
